@@ -33,7 +33,7 @@ export default function Button({
       {...props}
     >
       {icon && iconPosition === "left" && <IconComponent className="text-xl mr-2" />}
-      {!onlyIcon && <span>{children}</span>}
+      {!onlyIcon && <p className="m-0">{children}</p>}
       {icon && iconPosition === "right" && <IconComponent className="text-xl ml-2" />}
       {onlyIcon && icon && <IconComponent className="text-xl" />}
     </button>
