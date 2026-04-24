@@ -2,12 +2,12 @@ import React, { useState } from "react";
 
 
 import Button from "./Button";
-import { FaShoppingCart , FaCartPlus} from "react-icons/fa";
+import { FaCartPlus } from "react-icons/fa";
 import Navbar from "../Sections/Navbar";
 import Footer from "../Sections/Footer";
 
 
-export default function ProductDetail({ product }) {
+export default function ProductDetail({ product, onAddToCart, cartCount = 0 }) {
   const [imgError, setImgError] = useState(false);
   const fallbackImage = "/src/assets/Img/pijama5.jpeg";
   
@@ -18,10 +18,14 @@ export default function ProductDetail({ product }) {
   };
   
   const displayImage = imgError || !product.image ? fallbackImage : product.image;
+
+  const handleAddToCart = () => {
+    if (onAddToCart) onAddToCart(product);
+  };
   
   return (
     <>
-      <Navbar />
+      <Navbar cartCount={cartCount} />
       <br /><br /><br />
       <div className="max-w-3xl mx-auto mt-8 p-4 bg-white shadow rounded-lg">
         <div className="flex flex-col md:flex-row gap-6">
@@ -58,6 +62,7 @@ export default function ProductDetail({ product }) {
                 size="large"
                 state="text"
                 icon={FaCartPlus}
+                onClick={handleAddToCart}
               >
                 Comprar
               </Button>

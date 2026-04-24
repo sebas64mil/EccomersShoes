@@ -4,7 +4,7 @@ import { FaSearch, FaShoppingCart, FaArrowRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ cartCount = 0 }) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
@@ -29,9 +29,14 @@ export default function Navbar() {
             onClick={() => setIsSearchOpen(!isSearchOpen)}
           />
           <div className="relative">
-            <Button icon={FaShoppingCart} onlyIcon state="enabled" />
+            <Button
+              icon={FaShoppingCart}
+              onlyIcon
+              state="enabled"
+              onClick={() => navigate("/carrito")}
+            />
             <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-2 py-0.5 font-bold">
-              2
+              {cartCount}
             </span>
           </div>
         </div>
