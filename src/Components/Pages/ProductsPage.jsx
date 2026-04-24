@@ -1,13 +1,28 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import Navbar from "../Sections/Navbar";
 import Footer from "../Sections/Footer";
 import ProductCard from "../ElementsUi/ProductCard";
 import CategoryFilter from "../ElementsUi/CategoryFilter";
 
 export default function ProductsPage({ products, cartCount = 0 }) {
-  const [genero, setGenero] = useState("Todos");
-  const [tipo, setTipo] = useState("Todos");
-  const [oferta, setOferta] = useState("Todos");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const genero = searchParams.get("genero") || "Todos";
+  const tipo = searchParams.get("tipo") || "Todos";
+  const oferta = searchParams.get("oferta") || "Todos";
+
+  const updateFilterParam = (key, value) => {
+    const next = new URLSearchParams(searchParams);
+
+    if (!value || value === "Todos") {
+      next.delete(key);
+    } else {
+      next.set(key, value);
+    }
+
+    setSearchParams(next);
+  };
 
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
@@ -37,9 +52,9 @@ export default function ProductsPage({ products, cartCount = 0 }) {
             genero={genero}
             tipo={tipo}
             oferta={oferta}
-            onGeneroChange={setGenero}
-            onTipoChange={setTipo}
-            onOfertaChange={setOferta}
+            onGeneroChange={(value) => updateFilterParam("genero", value)}
+            onTipoChange={(value) => updateFilterParam("tipo", value)}
+            onOfertaChange={(value) => updateFilterParam("oferta", value)}
           />
 
           <p className="text-sm text-gray-500 mb-6">

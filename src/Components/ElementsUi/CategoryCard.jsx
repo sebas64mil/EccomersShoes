@@ -1,8 +1,11 @@
 import React from "react";
 
-export default function CategoryCard({ title, image }) {
+export default function CategoryCard({ title, image, onClick }) {
   return (
-    <div className="relative w-full h-full rounded-xl overflow-hidden cursor-pointer group">
+    <div
+      className="relative w-full h-full rounded-xl overflow-hidden cursor-pointer group"
+      onClick={onClick}
+    >
 
       {/* Imagen */}
       <img

@@ -17,9 +17,9 @@ export default function Navbar({ cartCount = 0 }) {
         <div className="flex gap-4">
           <Button state="text" size="medium" onClick={() => navigate("/")}>Inicio</Button>
           <Button state="text" size="medium" onClick={() => navigate("/productos")}>Categoría</Button>
-          <Button state="text" size="medium">Ofertas</Button>
-          <Button state="text" size="medium">Hombre</Button>
-          <Button state="text" size="medium">Mujer</Button>
+          <Button state="text" size="medium" onClick={() => navigate("/productos?oferta=Con%20oferta")}>Ofertas</Button>
+          <Button state="text" size="medium" onClick={() => navigate("/productos?genero=Hombre")}>Hombre</Button>
+          <Button state="text" size="medium" onClick={() => navigate("/productos?genero=Mujer")}>Mujer</Button>
         </div>
         <div className="flex items-center gap-4">
           <Button
