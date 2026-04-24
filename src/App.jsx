@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import Navbar from "./Components/Sections/Navbar"
 import Banner from "./Components/Sections/Banner"
@@ -16,8 +16,29 @@ import CartPage from "./Components/Pages/CartPage";
 import { products as featuredProductsRaw } from "./assets/Data/products";
 import { useParams } from "react-router-dom";
 
+const CART_STORAGE_KEY = "walkora-cart-items";
+
 function App() {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    try {
+      const raw = localStorage.getItem(CART_STORAGE_KEY);
+      if (!raw) return [];
+
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) return [];
+
+      return parsed.filter(
+        (item) =>
+          item &&
+          typeof item.quantity === "number" &&
+          item.quantity > 0 &&
+          item.product &&
+          typeof item.product.id === "number"
+      );
+    } catch {
+      return [];
+    }
+  });
 
   // Imagen de prueba
   const fallbackImage = "/Img/pijama5.jpeg";
@@ -55,6 +76,10 @@ function App() {
     () => cartItems.reduce((sum, item) => sum + item.quantity, 0),
     [cartItems]
   );
+
+  useEffect(() => {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addToCart = (product) => {
     setCartItems((prev) => {
