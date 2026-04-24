@@ -44,6 +44,7 @@ export default function ProductsPage({ products, cartCount = 0 }) {
   return (
     <>
       <Navbar cartCount={cartCount} />
+      <br /> <br /> <br />
       <div className="min-h-screen flex flex-col">
         <div className="flex-1 w-full max-w-7xl mx-auto mt-24 px-4 py-10">
           <h3 className="text-3xl font-bold text-gray-800 mb-6">Productos</h3>
