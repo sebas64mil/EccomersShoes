@@ -45,9 +45,9 @@ function OffersSection() {
 
   return (
     <div className="w-full max-w-7xl mx-auto mt-10 px-4">
-      <div className="flex gap-6 items-stretch">
-        {/* 🟨 IZQUIERDA */}
-        <div className="w-[40%]">
+      <div className="flex flex-col md:flex-row gap-6 items-stretch w-full">       
+         {/* 🟨 IZQUIERDA */}
+        <div className="w-full md:w-[40%]">
           <div className="bg-white rounded-xl shadow p-4 flex flex-col h-full">
             <h3 className="text-lg font-semibold text-gray-800 mb-3">
               Oferta del día
@@ -66,7 +66,7 @@ function OffersSection() {
           </div>
         </div>
         {/* 🟦 DERECHA */}
-        <div className="w-[60%]">
+        <div className="w-full md:w-[60%]">
           <div className="bg-white rounded-xl shadow p-4 flex flex-col h-full">
             {/* HEADER ARRIBA */}
             <div className="flex items-center justify-between mb-3">
