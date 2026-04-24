@@ -2,12 +2,12 @@ import React from "react";
 import CategoryCard from "../ElementsUi/CategoryCard";
 
 const categories = [
-  { id: 1, title: "Hombre", image: "src/assets/Img/ImagenProduct4.png" },
-  { id: 2, title: "Mujer", image: "src/assets/Img/ImagenProduct4.png" },
-  { id: 3, title: "Niños", image: "src/assets/Img/ImagenProduct4.png" },
-  { id: 4, title: "Deportes", image: "src/assets/Img/ImagenProduct4.png" },
-  { id: 5, title: "Accesorios", image: "src/assets/Img/ImagenProduct4.png" },
-  { id: 6, title: "Ofertas", image: "src/assets/Img/ImagenProduct4.png" },
+  { id: 1, title: "Hombre", image: "./src/assets/Img/ImagenProduct4.png" },
+  { id: 2, title: "Mujer", image: "./src/assets/Img/ImagenProduct4.png" },
+  { id: 3, title: "Niños", image: "./src/assets/Img/ImagenProduct4.png" },
+  { id: 4, title: "Deportes", image: "./src/assets/Img/ImagenProduct4.png" },
+  { id: 5, title: "Accesorios", image: "./src/assets/Img/ImagenProduct4.png" },
+  { id: 6, title: "Ofertas", image: "./src/assets/Img/ImagenProduct4.png" },
 ];
 
 export default function CategoriesSection() {
