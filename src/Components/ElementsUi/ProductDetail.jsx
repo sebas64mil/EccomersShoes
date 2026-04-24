@@ -9,7 +9,7 @@ import Footer from "../Sections/Footer";
 
 export default function ProductDetail({ product, onAddToCart, cartCount = 0 }) {
   const [imgError, setImgError] = useState(false);
-  const fallbackImage = "/src/assets/Img/pijama5.jpeg";
+  const fallbackImage = "/Img/pijama5.jpeg";
   
   if (!product) return <div>Producto no encontrado.</div>;
   
