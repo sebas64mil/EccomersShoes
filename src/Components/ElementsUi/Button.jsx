@@ -49,12 +49,12 @@ export default function Button({
         <>
           {/* Icono arriba */}
           {icon && iconPosition === "top" && <IconComponent className={`${iconSizeClasses[size]} mb-1`} />}
+          {/* Icono izquierda */}
+          {icon && iconPosition === "left" && <IconComponent className={`${iconSizeClasses[size]} mr-2`} />}
           {/* Texto */}
           <p className="m-0">{children}</p>
           {/* Icono abajo */}
           {icon && iconPosition === "bottom" && <IconComponent className={`${iconSizeClasses[size]} mt-1`} />}
-          {/* Icono izquierda */}
-          {icon && iconPosition === "left" && <IconComponent className={`${iconSizeClasses[size]} mr-2`} />}
           {/* Icono derecha */}
           {icon && iconPosition === "right" && <IconComponent className={`${iconSizeClasses[size]} ml-2`} />}
         </>
