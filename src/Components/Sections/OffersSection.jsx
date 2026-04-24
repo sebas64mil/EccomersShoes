@@ -8,7 +8,7 @@ const products = Array.from({ length: 12 }, (_, i) => ({
   title: "Nike Air Max 270 React Hombre Deportivo Running",
   price: 500000,
   discountPrice: 399000,
-  image: "./src/assets/Img/pijama5.jpeg",
+  image: "/Img/pijama5.jpeg",
 }));
 
 export default function OffersSection() {
@@ -57,7 +57,7 @@ export default function OffersSection() {
                 title="Nike Air Max 270 React Hombre Deportivo Running"
                 price={500000}
                 discountPrice={399000}
-                image="/src/assets/Img/pijama5.jpeg"
+                image="/Img/pijama5.jpeg"
               />
             </div>
 
