@@ -1,4 +1,5 @@
-# EccomersShoes
+# Walkora 
+### David pacanchique y  Sebastian villamil
 
 Aplicación web de e-commerce de calzado construida con React y Vite.
 
