@@ -2,25 +2,25 @@ import React, { useState } from "react";
 import Button from "../ElementsUi/Button";
 import { FaSearch, FaShoppingCart, FaArrowRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
 
   return (
     <div className="fixed top-0 left-0 w-full z-50 flex flex-col items-center">
-
       {/* NAVBAR */}
       <nav className="w-full max-w-7xl flex items-center justify-between py-4 px-8 bg-white shadow rounded-full mt-4 mx-4">
         <h1 className="text-2xl font-lemon">Walkora</h1>
-
         <div className="flex gap-4">
-          <Button state="text" size="medium">Categoría</Button>
+          <Button state="text" size="medium" onClick={() => navigate("/")}>Inicio</Button>
+          <Button state="text" size="medium" onClick={() => navigate("/productos")}>Categoría</Button>
           <Button state="text" size="medium">Ofertas</Button>
           <Button state="text" size="medium">Hombre</Button>
           <Button state="text" size="medium">Mujer</Button>
         </div>
-
         <div className="flex items-center gap-4">
           <Button
             icon={FaSearch}
@@ -28,7 +28,6 @@ export default function Navbar() {
             state="enabled"
             onClick={() => setIsSearchOpen(!isSearchOpen)}
           />
-
           <div className="relative">
             <Button icon={FaShoppingCart} onlyIcon state="enabled" />
             <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-2 py-0.5 font-bold">

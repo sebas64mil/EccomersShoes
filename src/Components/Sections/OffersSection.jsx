@@ -1,19 +1,21 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { products as globalProducts } from "../../assets/Data/products";
 import ProductCard from "../ElementsUi/ProductCard";
 import Button from "../ElementsUi/Button";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const products = Array.from({ length: 12 }, (_, i) => ({
-  id: i,
-  title: "Nike Air Max 270 React Hombre Deportivo Running",
-  price: 500000,
-  discountPrice: 399000,
-  image: "/Img/pijama5.jpeg",
+// Asegurar imágenes válidas
+const fallbackImage = "/src/assets/Img/pijama5.jpeg";
+const products = globalProducts.map(p => ({
+  ...p,
+  image: p.image || fallbackImage
 }));
 
-export default function OffersSection() {
+function OffersSection() {
   const scrollRef = useRef(null);
   const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
 
   const maxVisible = 3;
   const totalPages = Math.ceil(products.length / maxVisible);
@@ -40,40 +42,30 @@ export default function OffersSection() {
 
   return (
     <div className="w-full max-w-7xl mx-auto mt-10 px-4">
-      
       <div className="flex gap-6 items-stretch">
-
         {/* 🟨 IZQUIERDA */}
         <div className="w-[40%]">
           <div className="bg-white rounded-xl shadow p-4 flex flex-col h-full">
-            
             <h3 className="text-lg font-semibold text-gray-800 mb-3">
               Oferta del día
             </h3>
-
             <div className="flex-1">
               <ProductCard
                 variant="large"
-                title="Nike Air Max 270 React Hombre Deportivo Running"
-                price={500000}
-                discountPrice={399000}
-                image="/Img/pijama5.jpeg"
+                {...products[0]}
+                onClick={() => navigate(`/producto/${products[0].id}`)}
               />
             </div>
-
           </div>
         </div>
-
         {/* 🟦 DERECHA */}
         <div className="w-[60%]">
           <div className="bg-white rounded-xl shadow p-4 flex flex-col h-full">
-
             {/* HEADER ARRIBA */}
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-lg font-semibold text-gray-800">
                 Ofertas
               </h3>
-
               <div className="flex gap-1">
                 {Array.from({ length: totalPages }).map((_, i) => (
                   <span
@@ -85,10 +77,8 @@ export default function OffersSection() {
                 ))}
               </div>
             </div>
-
             {/* CONTENEDOR DEL CARRUSEL */}
             <div className="relative flex-1 flex items-center">
-
               {/* Carrusel */}
               <div
                 ref={scrollRef}
@@ -98,15 +88,12 @@ export default function OffersSection() {
                   <div
                     key={product.id}
                     className="shrink-0"
-                    style={{
-                      flexBasis: `calc((100% - 3rem) / ${maxVisible})`,
-                    }}
+                    style={{ flexBasis: `calc((100% - 3rem) / ${maxVisible})` }}
                   >
-                    <ProductCard {...product} />
+                    <ProductCard {...product} onClick={() => navigate(`/producto/${product.id}`)} />
                   </div>
                 ))}
               </div>
-
               {/* Botón izquierda */}
               <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
                 <Button
@@ -116,7 +103,6 @@ export default function OffersSection() {
                   icon={FaChevronLeft}
                 />
               </div>
-
               {/* Botón derecha */}
               <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
                 <Button
@@ -126,13 +112,12 @@ export default function OffersSection() {
                   icon={FaChevronRight}
                 />
               </div>
-
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
   );
 }
+
+export default OffersSection;
