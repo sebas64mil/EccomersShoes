@@ -19,7 +19,7 @@ export default function CategoryCard({ title, image, onClick }) {
 
       {/* Texto */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <h3 className="text-white text-lg md:text-xl font-semibold text-center px-2">
+        <h3 className="text-indigo-100 text-lg md:text-xl font-semibold text-center px-2">
           {title}
         </h3>
       </div>

@@ -82,12 +82,12 @@ return (
     <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-4">
       
       {/* Título */}
-      <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg mb-2">
+      <h2 className="text-4xl md:text-5xl font-bold text-indigo-950 drop-shadow-lg mb-2">
         Explora nuevos estilos
       </h2>
 
       {/* Descripción */}
-      <p className="text-white/90 text-sm md:text-base max-w-xl mb-4">
+      <p className="text-indigo-50 text-sm md:text-base max-w-xl mb-4">
         Descubre nuestra nueva colección de zapatos diseñados para comodidad y estilo en cada paso.
       </p>
 

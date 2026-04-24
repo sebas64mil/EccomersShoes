@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FaBeer } from "react-icons/fa";
 
+/* ---------------- SIZE ---------------- */
 const sizeClasses = {
-  large: "text-3xl",
-  medium: "text-xl",
-  small: "text-sm",
+  large: "text-3xl px-7 py-4",
+  medium: "text-xl px-6 py-3",
+  small: "text-sm px-4 py-2",
 };
 
 const iconSizeClasses = {
@@ -14,11 +15,50 @@ const iconSizeClasses = {
   small: "text-sm",
 };
 
-const stateClasses = {
-  enabled: "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800",
-  pressed: "bg-blue-800 text-white",
-  disabled: "bg-gray-300 text-gray-500 cursor-not-allowed",
-  text: "bg-transparent text-blue-600 hover:text-blue-800 hover:underline active:text-blue-900 shadow-none",
+/* ---------------- COLORS (INDIGO SYSTEM) ---------------- */
+const baseButton =
+  "relative inline-flex items-center justify-center font-semibold border border-indigo-950 text-white transition-all duration-300 overflow-hidden";
+
+/* fondo animado */
+const bgEffect =
+  "bg-indigo-950 bg-[length:200%] bg-[position:200%] hover:bg-[position:40%]";
+
+/* hover general */
+const hoverEffect =
+  "hover:bg-indigo-700 hover:border-indigo-700";
+
+/* ---------------- STATES ---------------- */
+const states = {
+  enabled: `
+    ${baseButton}
+    ${bgEffect}
+    ${hoverEffect}
+    active:scale-95
+  `,
+
+  pressed: `
+    ${baseButton}
+    bg-indigo-700
+    border-indigo-700
+    active:scale-95
+  `,
+
+  disabled: `
+    ${baseButton}
+    bg-gray-300
+    text-gray-500
+    cursor-not-allowed
+    opacity-60
+  `,
+
+  text: `
+    bg-transparent
+    text-indigo-950
+    hover:text-indigo-700
+    hover:underline
+    border-none
+    shadow-none
+  `,
 };
 
 export default function Button({
@@ -33,36 +73,56 @@ export default function Button({
   const isDisabled = state === "disabled";
   const IconComponent = icon || FaBeer;
 
-  // Determinar dirección del layout solo para top/bottom
+  /* ---------------- ICON LAYOUT ---------------- */
   let flexClass = "flex-row";
   if (iconPosition === "top") flexClass = "flex-col";
   if (iconPosition === "bottom") flexClass = "flex-col";
 
   return (
     <button
-      className={`inline-flex items-center justify-center font-semibold p-[0.3rem] rounded transition-colors duration-200 min-w-0 w-fit focus:outline-none focus:ring-2 focus:ring-blue-400 ${sizeClasses[size]} ${stateClasses[state]} ${state === "text" ? "p-0 bg-transparent shadow-none" : ""} flex ${flexClass}`}
+      className={`
+        ${states[state]}
+        ${sizeClasses[size]}
+        flex ${flexClass}
+        w-fit min-w-0
+        focus:outline-none
+        focus:ring-2 focus:ring-indigo-700
+      `}
       disabled={isDisabled}
       {...props}
     >
-      {onlyIcon && icon && <IconComponent className={iconSizeClasses[size]} />}
+      {/* ICON ONLY */}
+      {onlyIcon && icon && (
+        <IconComponent className={iconSizeClasses[size]} />
+      )}
+
+      {/* NORMAL BUTTON */}
       {!onlyIcon && (
         <>
-          {/* Icono arriba */}
-          {icon && iconPosition === "top" && <IconComponent className={`${iconSizeClasses[size]} mb-1`} />}
-          {/* Icono izquierda */}
-          {icon && iconPosition === "left" && <IconComponent className={`${iconSizeClasses[size]} mr-2`} />}
-          {/* Texto */}
+          {icon && iconPosition === "top" && (
+            <IconComponent className={`${iconSizeClasses[size]} mb-1`} />
+          )}
+
+          {icon && iconPosition === "left" && (
+            <IconComponent className={`${iconSizeClasses[size]} mr-2`} />
+          )}
+
           <p className="m-0">{children}</p>
-          {/* Icono abajo */}
-          {icon && iconPosition === "bottom" && <IconComponent className={`${iconSizeClasses[size]} mt-1`} />}
-          {/* Icono derecha */}
-          {icon && iconPosition === "right" && <IconComponent className={`${iconSizeClasses[size]} ml-2`} />}
+
+          {icon && iconPosition === "bottom" && (
+            <IconComponent className={`${iconSizeClasses[size]} mt-1`} />
+          )}
+
+          {icon && iconPosition === "right" && (
+            <IconComponent className={`${iconSizeClasses[size]} ml-2`} />
+          )}
         </>
       )}
     </button>
   );
 }
 
+/* ---------------- PROP TYPES ---------------- */
 Button.propTypes = {
   children: PropTypes.node,
   size: PropTypes.oneOf(["large", "medium", "small"]),

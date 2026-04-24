@@ -110,7 +110,7 @@ function App() {
         element={
           <>
             <Navbar cartCount={cartCount} />
-            <br /><br /><br />
+            <br /><br /><br /> <br />
             <Banner />
             <OffersSection />
             <CategoriesSection />

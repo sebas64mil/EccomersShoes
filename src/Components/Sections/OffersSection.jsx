@@ -48,7 +48,7 @@ function OffersSection() {
       <div className="flex flex-col md:flex-row gap-6 items-stretch w-full">       
          {/* 🟨 IZQUIERDA */}
         <div className="w-full md:w-[40%]">
-          <div className="bg-white rounded-xl shadow p-4 flex flex-col h-full">
+          <div className="bg-white rounded-xl shadow-md shadow-indigo-100 p-4 flex flex-col h-full">
             <h3 className="text-lg font-semibold text-gray-800 mb-3">
               Oferta del día
             </h3>
@@ -67,7 +67,7 @@ function OffersSection() {
         </div>
         {/* 🟦 DERECHA */}
         <div className="w-full md:w-[60%]">
-          <div className="bg-white rounded-xl shadow p-4 flex flex-col h-full">
+          <div className="bg-white rounded-xl shadow-md shadow-indigo-100 p-4 flex flex-col h-full">
             {/* HEADER ARRIBA */}
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-lg font-semibold text-gray-800">
@@ -78,7 +78,7 @@ function OffersSection() {
                   <span
                     key={i}
                     className={`h-1 w-6 rounded-full ${
-                      i === index ? "bg-blue-600" : "bg-gray-300"
+                      i === index ? "bg-indigo-800" : "bg-indigo-100"
                     }`}
                   />
                 ))}
@@ -105,7 +105,7 @@ function OffersSection() {
               <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
                 <Button
                   onClick={() => scroll("left")}
-                  size="large"
+                  size="small"
                   onlyIcon
                   icon={FaChevronLeft}
                 />
@@ -114,7 +114,7 @@ function OffersSection() {
               <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
                 <Button
                   onClick={() => scroll("right")}
-                  size="large"
+                  size="small"
                   onlyIcon
                   icon={FaChevronRight}
                 />

@@ -26,11 +26,11 @@ export default function Navbar({ cartCount = 0 }) {
     <div className="fixed top-0 left-0 w-full z-50 flex flex-col items-center">
 
       {/* NAVBAR */}
-      <nav className="w-full max-w-7xl flex items-center justify-between py-4 px-6 bg-white shadow rounded-full mt-4 mx-4">
+      <nav className="w-full max-w-7xl flex items-center justify-between py-4 px-6 bg-indigo-50 shadow rounded-full mt-4 mx-4">
 
         {/* LOGO */}
         <h1
-          className="text-2xl font-lemon cursor-pointer"
+          className="text-2xl text-indigo-950 font-lemon cursor-pointer"
           onClick={() => go("/")}
         >
           Walkora
@@ -93,7 +93,7 @@ export default function Navbar({ cartCount = 0 }) {
             transition={{ duration: 0.25 }}
             className="hidden md:block w-full max-w-7xl px-4 mt-2"
           >
-            <div className="bg-white shadow px-6 py-4 rounded-2xl flex items-center gap-3">
+            <div className="bg-indigo-50 shadow px-6 py-4 rounded-2xl flex items-center gap-3">
               <input
                 type="text"
                 placeholder="Buscar..."
@@ -123,7 +123,7 @@ export default function Navbar({ cartCount = 0 }) {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="w-full max-w-7xl bg-white shadow rounded-2xl mt-2 px-6 py-5 flex flex-col gap-4 md:hidden"
+            className="w-full max-w-7xl bg-indigo-50 shadow rounded-2xl mt-2 px-6 py-5 flex flex-col gap-4 md:hidden"
           >
 
             {/* LINKS */}

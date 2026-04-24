@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,9 +12,11 @@ export default function ProductCard({
   const [imgError, setImgError] = useState(false);
   const fallbackImage = "/Img/pijama5.jpeg";
   const hasDiscount = discountPrice && discountPrice < price;
+
   const discountPercent = hasDiscount
     ? Math.round(((price - discountPrice) / price) * 100)
     : 0;
+
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -31,12 +32,12 @@ export default function ProductCard({
   return (
     <div
       className={`
-        bg-white hover:bg-gray-100 transition-all duration-200 cursor-pointer h-fit w-full
+        bg-white hover:bg-gray-50 transition-all duration-200 cursor-pointer h-fit w-full
         ${variant === "large" ? "p-4" : "p-3"}
       `}
       onClick={handleClick}
     >
-      {/* Imagen */}
+      {/* IMAGE */}
       <div
         className={`
           w-full overflow-hidden rounded-lg bg-gray-200
@@ -50,37 +51,41 @@ export default function ProductCard({
           className="w-full h-full object-cover transition-transform duration-200 hover:scale-105"
         />
       </div>
-      {/* Info */}
+
+      {/* INFO */}
       <div className="mt-3 flex flex-col gap-1">
-        {/* Nombre */}
+        {/* TITLE */}
         <p
           className={`
             ${variant === "large" ? "text-base" : "text-sm"}
-            text-gray-800 line-clamp-2
+            text-indigo-950 line-clamp-2
           `}
         >
           {title}
         </p>
-        {/* Precios */}
+
+        {/* PRICES */}
         <div className="flex flex-col">
           {hasDiscount ? (
             <>
-              {/* Precio original */}
-              <span className="text-xs text-gray-400 line-through">
+              {/* OLD PRICE */}
+              <span className="text-xs text-indigo-300 line-through">
                 ${price.toLocaleString()}
               </span>
-              {/* Precio con descuento */}
+
+              {/* NEW PRICE + DISCOUNT */}
               <div className="flex items-center justify-between w-full">
                 <span
                   className={`
                     ${variant === "large" ? "text-xl" : "text-lg"}
-                    font-semibold text-gray-900
+                    font-semibold text-indigo-950
                   `}
                 >
                   ${discountPrice.toLocaleString()}
                 </span>
-                <span className="text-green-600 text-sm font-medium">
-                  {discountPercent}% OFF
+
+                <span className="text-indigo-700 text-sm font-semibold">
+                  -{discountPercent}% OFF
                 </span>
               </div>
             </>
@@ -88,7 +93,7 @@ export default function ProductCard({
             <span
               className={`
                 ${variant === "large" ? "text-xl" : "text-lg"}
-                font-semibold text-gray-900
+                font-semibold text-indigo-950
               `}
             >
               ${price.toLocaleString()}

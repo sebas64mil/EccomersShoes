@@ -44,14 +44,14 @@ export default function CartPage({ cartItems, cartCount, onIncrease, onDecrease,
       <Navbar cartCount={cartCount} />
       <div className="min-h-screen flex flex-col">
         <div className="flex-1 w-full max-w-7xl mx-auto mt-24 px-4 py-10">
-          <h3 className="text-3xl font-bold text-gray-800 mb-6">Carrito</h3>
+          <h3 className="text-3xl font-bold text-indigo-950 mb-6">Carrito</h3>
 
           {cartItems.length === 0 ? (
-            <div className="bg-white rounded-xl shadow p-6 text-gray-600">
+            <div className="bg-white rounded-xl shadow-md shadow-indigo-100 p-6 tex-indigo-600">
               Tu carrito esta vacio.
             </div>
           ) : (
-            <div className="bg-white rounded-xl shadow divide-y">
+            <div className="bg-white rounded-xl shadow-md shadow-indigo-100 divide-y">
               {cartItems.map((item) => {
                 const unitPrice = item.product.discountPrice || item.product.price;
                 return (
@@ -67,8 +67,8 @@ export default function CartPage({ cartItems, cartCount, onIncrease, onDecrease,
                         className="w-20 h-20 rounded-lg object-cover bg-gray-200"
                       />
                       <div className="min-w-0">
-                        <p className="text-gray-800 font-semibold truncate">{item.product.title}</p>
-                        <p className="text-gray-500 text-sm">${unitPrice.toLocaleString()}</p>
+                        <p className="text-indigo-800 font-semibold truncate">{item.product.title}</p>
+                        <p className="text-indigo-500 text-sm">${unitPrice.toLocaleString()}</p>
                       </div>
                     </div>
 
@@ -84,9 +84,9 @@ export default function CartPage({ cartItems, cartCount, onIncrease, onDecrease,
           )}
 
           <div className="mt-6 flex justify-end">
-            <div className="bg-white rounded-xl shadow p-4 min-w-55">
-              <p className="text-gray-500 text-sm">Total</p>
-              <p className="text-2xl font-bold text-gray-800">${total.toLocaleString()}</p>
+            <div className="bg-white rounded-xl shadow-md shadow-indigo-100 p-4 min-w-55">
+              <p className="text-indigo-600 text-sm">Total</p>
+              <p className="text-2xl font-bold text-indigo-800">${total.toLocaleString()}</p>
               <div className="mt-4 flex justify-end">
                 <Button size="medium" state="enabled" onClick={handlePay}>
                   Pagar
