@@ -11,7 +11,7 @@ export default function ProductCard({
   variant = "normal",
 }) {
   const [imgError, setImgError] = useState(false);
-  const fallbackImage = "/src/assets/Img/pijama5.jpeg";
+  const fallbackImage = "/Img/pijama5.jpeg";
   const hasDiscount = discountPrice && discountPrice < price;
   const discountPercent = hasDiscount
     ? Math.round(((price - discountPrice) / price) * 100)

@@ -4,7 +4,7 @@ import Footer from "../Sections/Footer";
 import Button from "../ElementsUi/Button";
 
 export default function CartPage({ cartItems, cartCount, onIncrease, onDecrease, onCheckout }) {
-  const fallbackImage = "/src/assets/Img/pijama5.jpeg";
+  const fallbackImage = "/Img/pijama5.jpeg";
 
   const total = cartItems.reduce((sum, item) => {
     const unitPrice = item.product.discountPrice || item.product.price;
