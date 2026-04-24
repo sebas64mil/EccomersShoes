@@ -6,7 +6,7 @@ import Button from "../ElementsUi/Button";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 // Asegurar imágenes válidas
-const fallbackImage = "/Img/pijama5.jpeg";
+const fallbackImage = "/src/assets/Img/pijama5.jpeg";
 const products = globalProducts.map(p => ({
   ...p,
   image: p.image || fallbackImage

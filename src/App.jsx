@@ -20,7 +20,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
   // Imagen de prueba
-  const fallbackImage = "/Img/pijama5.jpeg";
+  const fallbackImage = "./src/assets/Img/pijama5.jpeg";
   const allProducts = useMemo(
     () =>
       featuredProductsRaw.map((p) => ({
