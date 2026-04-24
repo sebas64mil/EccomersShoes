@@ -42,28 +42,28 @@ export default function ProductDetail({ product, onAddToCart, cartCount = 0 }) {
             {/* INFO */}
             <div className="flex-1 flex flex-col justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-bold text-gray-800">
+                <h2 className="text-2xl font-bold text-indigo-950">
                   {product.title}
                 </h2>
 
                 <div className="flex items-center gap-4 mt-2">
                   {product.discountPrice ? (
                     <>
-                      <span className="text-xl font-semibold text-green-600">
+                      <span className="text-xl font-semibold text-indigo-600">
                         ${product.discountPrice.toLocaleString()}
                       </span>
-                      <span className="text-gray-400 line-through">
+                      <span className="text-indigo-300 line-through">
                         ${product.price.toLocaleString()}
                       </span>
                     </>
                   ) : (
-                    <span className="text-xl font-semibold text-gray-800">
+                    <span className="text-xl font-semibold text-indigo-800">
                       ${product.price.toLocaleString()}
                     </span>
                   )}
                 </div>
 
-                <p className="text-gray-600 mt-3">
+                <p className="text-indigo-950 mt-3">
                   {product.description || "Descripción del producto aquí..."}
                 </p>
               </div>
