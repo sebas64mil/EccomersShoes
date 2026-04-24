@@ -21,10 +21,35 @@ function App() {
 
   // Imagen de prueba
   const fallbackImage = "/src/assets/Img/pijama5.jpeg";
-  const featuredProducts = featuredProductsRaw.map(p => ({
-    ...p,
-    image: p.image || fallbackImage
-  }));
+  const allProducts = useMemo(
+    () =>
+      featuredProductsRaw.map((p) => ({
+        ...p,
+        image: p.image || fallbackImage,
+      })),
+    []
+  );
+
+  const [featuredProductIds, setFeaturedProductIds] = useState(() => {
+    const manualFeatured = allProducts
+      .filter((product) => product.isFeature)
+      .map((product) => product.id);
+
+    if (manualFeatured.length >= 5) return manualFeatured.slice(0, 5);
+
+    const remaining = allProducts
+      .map((product) => product.id)
+      .filter((id) => !manualFeatured.includes(id));
+
+    return [...manualFeatured, ...remaining].slice(0, 5);
+  });
+
+  const featuredProducts = useMemo(() => {
+    return featuredProductIds
+      .map((id) => allProducts.find((product) => product.id === id))
+      .filter(Boolean)
+      .slice(0, 5);
+  }, [allProducts, featuredProductIds]);
 
   const cartCount = useMemo(
     () => cartItems.reduce((sum, item) => sum + item.quantity, 0),
@@ -61,7 +86,20 @@ function App() {
     );
   };
 
-  const clearCart = () => {
+  const clearCart = (purchasedItems = []) => {
+    const purchasedIds = purchasedItems.map((item) => item.product.id);
+
+    if (purchasedIds.length > 0) {
+      setFeaturedProductIds((prevIds) => {
+        const merged = [
+          ...purchasedIds,
+          ...prevIds.filter((id) => !purchasedIds.includes(id)),
+        ];
+        const unique = [...new Set(merged)];
+        return unique.slice(0, 5);
+      });
+    }
+
     setCartItems([]);
   };
 
@@ -85,7 +123,7 @@ function App() {
         path="/producto/:id"
         element={
           <ProductDetailWrapper
-            products={featuredProducts}
+            products={allProducts}
             onAddToCart={addToCart}
             cartCount={cartCount}
           />
@@ -93,7 +131,7 @@ function App() {
       />
       <Route
         path="/productos"
-        element={<ProductsPage products={featuredProducts} cartCount={cartCount} />}
+        element={<ProductsPage products={allProducts} cartCount={cartCount} />}
       />
       <Route
         path="/carrito"

@@ -7,18 +7,24 @@ import CategoryFilter from "../ElementsUi/CategoryFilter";
 export default function ProductsPage({ products, cartCount = 0 }) {
   const [genero, setGenero] = useState("Todos");
   const [tipo, setTipo] = useState("Todos");
+  const [oferta, setOferta] = useState("Todos");
 
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
       const productGenero = product.genero || "Unisex";
       const productTipo = product.tipo || "Deportivos";
+      const hasOffer = !!product.discountPrice && product.discountPrice < product.price;
 
       const matchesGenero = genero === "Todos" || productGenero === genero;
       const matchesTipo = tipo === "Todos" || productTipo === tipo;
+      const matchesOferta =
+        oferta === "Todos" ||
+        (oferta === "Con oferta" && hasOffer) ||
+        (oferta === "Sin oferta" && !hasOffer);
 
-      return matchesGenero && matchesTipo;
+      return matchesGenero && matchesTipo && matchesOferta;
     });
-  }, [products, genero, tipo]);
+  }, [products, genero, tipo, oferta]);
 
   return (
     <>
@@ -30,8 +36,10 @@ export default function ProductsPage({ products, cartCount = 0 }) {
           <CategoryFilter
             genero={genero}
             tipo={tipo}
+            oferta={oferta}
             onGeneroChange={setGenero}
             onTipoChange={setTipo}
+            onOfertaChange={setOferta}
           />
 
           <p className="text-sm text-gray-500 mb-6">

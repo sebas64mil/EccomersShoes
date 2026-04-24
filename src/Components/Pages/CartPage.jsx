@@ -36,7 +36,7 @@ export default function CartPage({ cartItems, cartCount, onIncrease, onDecrease,
     }
 
     alert("Pago aprobado. Gracias por tu compra.");
-    if (onCheckout) onCheckout();
+    if (onCheckout) onCheckout(cartItems);
   };
 
   return (

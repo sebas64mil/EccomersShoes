@@ -8,7 +8,8 @@ export const products = [
     image: "/src/assets/Img/pijama5.jpeg",
     description: "Zapatillas deportivas Nike Air Max 270 React para hombre, ideales para running y uso diario.",
     genero: "Hombre",
-    tipo: "Deportivos"
+    tipo: "Deportivos",
+    isFeature: true
   },
   {
     id: 1,
@@ -18,17 +19,19 @@ export const products = [
     image: "/src/assets/Img/pijama6.jpeg",
     description: "Adidas Ultraboost para mujer, maxima comodidad y estilo para correr.",
     genero: "Mujer",
-    tipo: "Deportivos"
+    tipo: "Deportivos",
+    isFeature: true
   },
   {
     id: 2,
     title: "Puma RS-X Hombre Casual",
     price: 350000,
-    discountPrice: 299000,
+    discountPrice: null,
     image: "/src/assets/Img/pijama7.jpeg",
     description: "Puma RS-X, zapatillas casuales para hombre, dise\u00f1o moderno y urbano.",
     genero: "Hombre",
-    tipo: "Formales"
+    tipo: "Formales",
+    isFeature: true
   },
   {
     id: 3,
@@ -38,7 +41,8 @@ export const products = [
     image: "/src/assets/Img/pijama8.jpeg",
     description: "Reebok Classic Leather para mujer, clasico atemporal y comodo.",
     genero: "Mujer",
-    tipo: "Formales"
+    tipo: "Formales",
+    isFeature: true
   },
   {
     id: 4,
@@ -48,17 +52,19 @@ export const products = [
     image: "/src/assets/Img/pijama9.jpeg",
     description: "New Balance 574, zapatillas lifestyle para hombre, confort y estilo.",
     genero: "Hombre",
-    tipo: "Formales"
+    tipo: "Formales",
+    isFeature: true
   },
   {
     id: 5,
     title: "Air Jordan 1 Retro Mujer",
     price: 650000,
-    discountPrice: 550000,
+    discountPrice: null,
     image: "/src/assets/Img/pijama5.jpeg",
     description: "Air Jordan 1 Retro, iconica zapatilla para mujer con dise\u00f1o premium.",
     genero: "Mujer",
-    tipo: "Formales"
+    tipo: "Formales",
+    isFeature: false
   },
   {
     id: 6,
@@ -68,17 +74,19 @@ export const products = [
     image: "/src/assets/Img/pijama5.jpeg",
     description: "Converse Chuck Taylor, clasico casual para hombre, versatil y comodo.",
     genero: "Hombre",
-    tipo: "Verano"
+    tipo: "Verano",
+    isFeature: false
   },
   {
     id: 7,
     title: "Vans Old Skool Mujer",
     price: 340000,
-    discountPrice: 289000,
+    discountPrice: null,
     image: "/src/assets/Img/pijama5.jpeg",
     description: "Vans Old Skool para mujer, dise\u00f1o iconico perfecto para todos los estilos.",
     genero: "Mujer",
-    tipo: "Verano"
+    tipo: "Verano",
+    isFeature: false
   },
   {
     id: 8,
@@ -88,7 +96,8 @@ export const products = [
     image: "/src/assets/Img/pijama5.jpeg",
     description: "Saucony Cohesion 15, zapatillas de running comodas para hombre.",
     genero: "Hombre",
-    tipo: "Deportivos"
+    tipo: "Deportivos",
+    isFeature: false
   },
   {
     id: 9,
@@ -98,17 +107,19 @@ export const products = [
     image: "/src/assets/Img/pijama5.jpeg",
     description: "Brooks Ghost 14, zapatillas premium para running femenino con maximo confort.",
     genero: "Mujer",
-    tipo: "Deportivos"
+    tipo: "Deportivos",
+    isFeature: false
   },
   {
     id: 10,
     title: "ASICS Gel-Lyte III Hombre",
     price: 420000,
-    discountPrice: 350000,
+    discountPrice: null,
     image: "/src/assets/Img/pijama5.jpeg",
     description: "ASICS Gel-Lyte III, dise\u00f1o retro con tecnologia moderna para maxima comodidad.",
     genero: "Hombre",
-    tipo: "Deportivos"
+    tipo: "Deportivos",
+    isFeature: false
   },
   {
     id: 11,
@@ -118,17 +129,19 @@ export const products = [
     image: "/src/assets/Img/pijama5.jpeg",
     description: "Mizuno Wave Skyrise, zapatillas de running innovadoras para mujer.",
     genero: "Mujer",
-    tipo: "Deportivos"
+    tipo: "Deportivos",
+    isFeature: false
   },
   {
     id: 12,
     title: "Under Armour HOVR Hombre",
     price: 480000,
-    discountPrice: 410000,
+    discountPrice: null,
     image: "/src/assets/Img/pijama5.jpeg",
     description: "Under Armour HOVR, tecnologia de suspension para running de alto rendimiento.",
     genero: "Hombre",
-    tipo: "Trekking"
+    tipo: "Trekking",
+    isFeature: false
   },
   {
     id: 13,
@@ -138,7 +151,8 @@ export const products = [
     image: "/src/assets/Img/pijama5.jpeg",
     description: "Nike React Infinity, zapatillas premium para running con tecnologia React.",
     genero: "Mujer",
-    tipo: "Deportivos"
+    tipo: "Deportivos",
+    isFeature: false
   },
   {
     id: 14,
@@ -148,6 +162,7 @@ export const products = [
     image: "/src/assets/Img/pijama5.jpeg",
     description: "Salomon Speedcross, zapatillas trail running para terrenos variados.",
     genero: "Hombre",
-    tipo: "Trekking"
+    tipo: "Trekking",
+    isFeature: false
   }
 ];

@@ -16,9 +16,12 @@ function OffersSection() {
   const scrollRef = useRef(null);
   const [index, setIndex] = useState(0);
   const navigate = useNavigate();
+  const offerProducts = products.filter(
+    (product) => product.discountPrice && product.discountPrice < product.price
+  );
 
   const maxVisible = 3;
-  const totalPages = Math.ceil(products.length / maxVisible);
+  const totalPages = Math.max(1, Math.ceil(offerProducts.length / maxVisible));
 
   const scroll = (direction) => {
     const container = scrollRef.current;
@@ -50,11 +53,15 @@ function OffersSection() {
               Oferta del día
             </h3>
             <div className="flex-1">
-              <ProductCard
-                variant="large"
-                {...products[0]}
-                onClick={() => navigate(`/producto/${products[0].id}`)}
-              />
+              {offerProducts.length > 0 ? (
+                <ProductCard
+                  variant="large"
+                  {...offerProducts[0]}
+                  onClick={() => navigate(`/producto/${offerProducts[0].id}`)}
+                />
+              ) : (
+                <p className="text-gray-500">No hay productos en oferta.</p>
+              )}
             </div>
           </div>
         </div>
@@ -84,7 +91,7 @@ function OffersSection() {
                 ref={scrollRef}
                 className="flex gap-4 overflow-hidden scroll-smooth w-full"
               >
-                {products.map((product) => (
+                {offerProducts.map((product) => (
                   <div
                     key={product.id}
                     className="shrink-0"
