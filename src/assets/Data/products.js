@@ -1,22 +1,22 @@
 export const products = [
   {
     id: 0,
-    title: "Nike Air Max 270 React Hombre Deportivo Running",
+    title: "Nike Reax 8 TR",
     price: 500000,
     discountPrice: 399000,
-    image: "/Img/pijama5.jpeg",
-    description: "Zapatillas deportivas Nike Air Max 270 React para hombre, ideales para running y uso diario.",
+    image: "https://nikeco.vtexassets.com/arquivos/ids/936248-1200-auto?v=639028010347370000&width=1200&height=auto&aspect=true",
+    description: "Calzado de entrenamiento para hombre",
     genero: "Hombre",
     tipo: "Deportivos",
     isFeature: true
   },
   {
     id: 1,
-    title: "Adidas Ultraboost Mujer Running",
+    title: "Nike MC Trainer 3",
     price: 480000,
     discountPrice: 420000,
-    image: "/Img/pijama5.jpeg",
-    description: "Adidas Ultraboost para mujer, maxima comodidad y estilo para correr.",
+    image: "https://nikeco.vtexassets.com/arquivos/ids/1031804-1200-auto?v=639111012360370000&width=1200&height=auto&aspect=true",
+    description: "Calzado de entrenamiento para mujer",
     genero: "Mujer",
     tipo: "Deportivos",
     isFeature: true
