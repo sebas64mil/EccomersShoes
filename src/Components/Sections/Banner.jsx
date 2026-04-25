@@ -1,107 +1,131 @@
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 import Button from "../ElementsUi/Button";
 import { FaArrowRight } from "react-icons/fa";
+
 export default function Banner() {
   const mountRef = useRef(null);
 
-useEffect(() => {
-  const mountNode = mountRef.current;
-  if (!mountNode) return;
+  useEffect(() => {
+    const mountNode = mountRef.current;
+    if (!mountNode) return;
 
-  const width = mountNode.clientWidth;
-  const height = 300;
+    const width = mountNode.clientWidth;
+    const height = 300;
 
-  const scene = new THREE.Scene();
+    const scene = new THREE.Scene();
 
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    width / height,
-    0.1,
-    1000
-  );
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      width / height,
+      0.1,
+      1000
+    );
 
-  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setSize(width, height);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(window.devicePixelRatio);
 
-  mountNode.appendChild(renderer.domElement);
+    mountNode.appendChild(renderer.domElement);
 
-  // Cubo
-  const geometry = new THREE.BoxGeometry();
-  const material = new THREE.MeshStandardMaterial({ color: 0x2563eb });
-  const cube = new THREE.Mesh(geometry, material);
-  scene.add(cube);
+    // 🔥 LUCES
+    const light = new THREE.PointLight(0xffffff, 1);
+    light.position.set(5, 5, 5);
+    scene.add(light);
 
-  // Luces
-  const light = new THREE.PointLight(0xffffff, 1);
-  light.position.set(5, 5, 5);
-  scene.add(light);
+    const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambient);
 
-  const ambient = new THREE.AmbientLight(0xffffff, 0.5);
-  scene.add(ambient);
+    // 📦 FBX
+    const loader = new FBXLoader();
+    let model = null;
 
-  camera.position.z = 3;
+    loader.load(
+      "/src/assets/Models/vans-shoe/source/Shoe.fbx", 
+      (fbx) => {
+        model = fbx;
 
-  let animationId;
+        // Ajustes importantes
+        model.scale.set(2, 2, 2);
+        model.position.set(0, -1, -3);
+        model.rotation.x= Math.PI / 4;
 
-  const animate = () => {
-    animationId = requestAnimationFrame(animate);
+        // Mejorar meshes
+        model.traverse((child) => {
+          if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+          }
+        });
 
-    cube.rotation.x += 0.005;
-    cube.rotation.y += 0.007;
+        scene.add(model);
+      },
+      undefined,
+      (error) => {
+        console.error("Error cargando FBX:", error);
+      }
+    );
 
-    renderer.render(scene, camera);
-  };
+    camera.position.z = 5;
 
-  animate();
+    let animationId;
 
-  // ✅ CLEANUP SEGURO
-  return () => {
-    cancelAnimationFrame(animationId);
+    const animate = () => {
+      animationId = requestAnimationFrame(animate);
 
-    if (mountNode.contains(renderer.domElement)) {
-      mountNode.removeChild(renderer.domElement);
-    }
+      // 🔄 animación del modelo
+      if (model) {
+        model.rotation.y += 0.01;
+      }
 
-    geometry.dispose();
-    material.dispose();
-    renderer.dispose();
-  };
-}, []);
+      renderer.render(scene, camera);
+    };
 
-return (
-  <div className="relative w-full max-w-7xl mx-auto h-[300px] rounded-2xl overflow-hidden bg-gray-100 mt-6">
-    
-    {/* 🧊 Canvas Three.js */}
-    <div ref={mountRef} className="absolute inset-0" />
+    animate();
 
-    {/* 🌑 Overlay oscuro (mejora visibilidad) */}
-    <div className="absolute inset-0 bg-black/30 z-0" />
+    // 🧹 CLEANUP
+    return () => {
+      cancelAnimationFrame(animationId);
 
-    {/* 📝 Contenido */}
-    <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-4">
+      if (mountNode.contains(renderer.domElement)) {
+        mountNode.removeChild(renderer.domElement);
+      }
+
+      renderer.dispose();
+    };
+  }, []);
+
+  return (
+    <div className="relative w-full max-w-7xl mx-auto h-[300px] rounded-2xl overflow-hidden bg-gray-100 mt-6">
       
-      {/* Título */}
-      <h2 className="text-4xl md:text-5xl font-bold text-indigo-950 drop-shadow-lg mb-2">
-        Explora nuevos estilos
-      </h2>
+      {/* 🧊 Canvas */}
+      <div ref={mountRef} className="absolute inset-0" />
 
-      {/* Descripción */}
-      <p className="text-indigo-50 text-sm md:text-base max-w-xl mb-4">
-        Descubre nuestra nueva colección de zapatos diseñados para comodidad y estilo en cada paso.
-      </p>
+      {/* 🌑 Overlay */}
+      <div className="absolute inset-0 bg-black/30 z-0" />
 
-      {/* Botón */}
-      <Button 
-        size="medium"
-        state="enabled"
-        icon={FaArrowRight}
-        iconPosition="right"
-      >
-        Comprar ahora
-      </Button>
+      {/* 📝 UI */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-4">
+        
+        <h2 className="text-4xl md:text-5xl font-bold text-indigo-950 drop-shadow-lg mb-2">
+          Explora nuevos estilos
+        </h2>
 
+        <p className="text-indigo-50 text-sm md:text-base max-w-xl mb-4">
+          Descubre nuestra nueva colección de zapatos diseñados para comodidad y estilo en cada paso.
+        </p>
+
+        <Button 
+          size="medium"
+          state="enabled"
+          icon={FaArrowRight}
+          iconPosition="right"
+        >
+          Comprar ahora
+        </Button>
+
+      </div>
     </div>
-  </div>
-);
+  );
 }
